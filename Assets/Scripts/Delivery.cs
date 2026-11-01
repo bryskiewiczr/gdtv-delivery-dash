@@ -8,9 +8,11 @@ public class Delivery : MonoBehaviour {
     private bool _isDelivering = false;
 
     private ParticleSystem _particleSystem;
+    private Score _scoreManager;
 
     void Start() {
         _particleSystem = GetComponent<ParticleSystem>();
+        _scoreManager = GetComponent<Score>();
     }
     
     void OnTriggerEnter2D(Collider2D collider) {
@@ -24,6 +26,7 @@ public class Delivery : MonoBehaviour {
             if (_isDelivering) {
                 _isDelivering = false;
                 _particleSystem.Stop();
+                _scoreManager.UpdateScore();
             }
         }
     }
